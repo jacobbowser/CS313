@@ -1,0 +1,32 @@
+body { 
+background-color: lightblue;
+text-align: center;
+}
+
+#click:hover {
+    -webkit-transform: scale(1.25, 1.25);
+    -moz-transform: scale(1.25, 1.25)
+}
+
+img {
+    margin: auto; 
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #888;
+}
+
+.myIntro {
+    text-align:center;
+    color:blue;
+    font-family:'Times New Roman'
+}
+
+.background {
+    background-color:lightblue;
+}
+
+.header {
+    font-weight:bold; 
+    text-align:center; 
+    margin:auto
+}
+

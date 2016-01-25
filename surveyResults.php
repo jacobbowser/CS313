@@ -115,12 +115,12 @@ $AdidasP = $Adidas / $shoeTotal * 100;
 $BalanceP = $Balance / $shoeTotal * 100;
 $SketcherP = $Sketcher / $shoeTotal * 100;
 $ReebokP = $Reebok / $shoeTotal * 100;
-echo "<h4>BEST SPORTS:</h4><br /><fieldset>Soccer: $SoccerP%<br />Football: $FootballP%<br />"
+echo "<fieldset><h4>BEST SPORTS:</h4>Soccer: $SoccerP%<br />Football: $FootballP%<br />"
         . "Basketball: $BasketballP%<br />Volleyball: $VolleyballP%<br />"
         . "Baseball: $BaseballP%<br /><h4>FAVORITE BASKETBALL PLAYER:</h4>"
         . "Kobe Bryant: $KobeP%<br />Lebron James: $LebronP%<br />Kevin Durant: "
         . "$KevinP%<br />Stephen Curry: $StephenP%<br />Blake Griffin: "
-        . "$BlakeP%<br /><h4>FAVORITE BALL:</h4><br />Wilson: $WilsonP%<br />"
+        . "$BlakeP%<br /><h4>FAVORITE BALL:</h4>Wilson: $WilsonP%<br />"
         . "Spalding: $SpaldingP%<br />Sterling: $SterlingP%<br />"
         . "Baden: $BadenP%<br /><h4>FAVORITE SHOES:</h4>Nike: $NikeP%<br />Adidas: "
         . "$AdidasP%<br />New Balance: $BalanceP%<br />Sketchers: $SketcherP%<br />"

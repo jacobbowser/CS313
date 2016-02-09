@@ -34,20 +34,22 @@ $playerRequest = $db->query('SELECT * FROM player');
 ?>
     <div style="text-align: center">
     
+        <a href="score.php">SCORES</a>
 <?php
 echo '<h3> Fantasy Basketball </h3>';
 foreach ($leagueRequest as $league) {
     echo "<h4>LEAGUE :" . $league['name'] . "</h4>";
     foreach ($userRequest as $user) {
         if($user['leagueId'] == $league['id']) {
-            echo "<h5>TEAM: " . $user['teamName'] . "</h5>";
+            echo "<h5>TEAM: " . $user['teamName'] . '</h5><table align="center">';
             foreach ($playerRequest as $player) {
                 if($player['userId'] == $user['id']) {
-                echo "<h6>" . $player['name'] . "  Points: " . $player['points'] .
-                        "  Rebounds: " . $player['rebounds'] . "  Assissts: " .
-                        $player['assissts'] . "  Score: " . $player['score'] . "</h6>";
+                echo "<tr> <td>" . $player['name'] . "</td><td>Points: <input type='text' />"
+                        . "</td><td>Rebounds: <input type='text' /></td><td>Assissts: <input type='text' />" .
+                        "</td><td>Score: </tr>";
                 }
             }
+            echo "</table>Total Score: " . $user["score"];
             $playerRequest = $db->query('SELECT * FROM player');
         }
     }

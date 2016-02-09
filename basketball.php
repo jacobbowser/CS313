@@ -36,12 +36,12 @@ $playerRequest = $db->query('SELECT * FROM player');
     
         <a href="score.php">SCORES</a>
 <?php
-echo '<h3> Fantasy Basketball </h3>';
+echo '<h2> Fantasy Basketball </h2>';
 foreach ($leagueRequest as $league) {
-    echo "<h4>LEAGUE :" . $league['name'] . "</h4>";
+    echo "<h3>LEAGUE :" . $league['name'] . "</h3>";
     foreach ($userRequest as $user) {
         if($user['leagueId'] == $league['id']) {
-            echo "<h5>TEAM: " . $user['teamName'] . '</h5><table align="center">';
+            echo "<h4>TEAM: " . $user['teamName'] . '</h4><table align="center">';
             foreach ($playerRequest as $player) {
                 if($player['userId'] == $user['id']) {
                 echo "<tr> <td>" . $player['name'] . "</td><td>Points: <input type='text' />"

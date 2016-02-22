@@ -3,37 +3,40 @@
     <head>
         <title>Create User Page</title>
     </head>
-    <body>
-        <?php
-        $openShiftVar = getenv('OPENSHIFT_MYSQL_DB_HOST'); 
+    <body style="background-color: lightblue">
+<?php
+$openShiftVar = getenv('OPENSHIFT_MYSQL_DB_HOST'); 
 
 if ($openShiftVar === null || $openShiftVar == "")
 {
      // Not in the openshift environment
-     $dbHost = "localhost";
+    $dbHost = "localhost"; 
+    $dbUser = "jacobbowser"; 
+    $dbPassword = "password";
      // …
 }
 else 
 {
      // In the openshift environment 
-     $dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
-     // …
+    $dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
+    $dbPort = getenv('OPENSHIFT_MYSQL_DB_PORT'); 
+    $dbUser = getenv('OPENSHIFT_MYSQL_DB_USERNAME'); 
+    $dbPassword = getenv('OPENSHIFT_MYSQL_DB_PASSWORD');
+
 }
-$dbPort = getenv('OPENSHIFT_MYSQL_DB_PORT'); 
-$dbUser = getenv('OPENSHIFT_MYSQL_DB_USERNAME'); 
-$dbPassword = getenv('OPENSHIFT_MYSQL_DB_PASSWORD');
 
 $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
-$db = new PDO("mysql:host=$dbHost;dbname=basketball", 'jacobbowser', 'password', $pdo_options);
+$db = new PDO("mysql:host=$dbHost;dbname=basketball", $dbUser, $dbPassword, $pdo_options);
 
 $leagueRequest = $db->query("SELECT * FROM league");
 $playerRequest = $db->query('SELECT * FROM player');
         
         ?>
-        <h2>Fill out your information:</h2>
-        <form action="insertUser.php" method="POST">
-            <b>Username: </b><input type='text' name='usr'><br />
-            <b>Password: </b><input type='password' name ='pwd'><br /><br />
+        
+        <form style="text-align:center" action="insertUser.php" method="POST">
+            <h2>Fill out your information:</h2>
+            <b>Username: </b><input type='text' name='usr' placeholder="Username" required><br />
+            <b>Password: </b><input type='password' name ='pwd' placeholder="Password" required><br /><br />
             <b>Choose League:</b><select name="leagueId">
             <?php
             foreach($leagueRequest as $league) { 
@@ -43,14 +46,11 @@ $playerRequest = $db->query('SELECT * FROM player');
                 }
             ?>
             </select><br /><br />
-            <b>Team Name: </b><input type='text' name='teamName'><br /><br />
+            <b>Team Name: </b><input type='text' name='teamName' placeholder="Team Name" required><br /><br />
             <b>Choose 5 players for your team:</b><br />
             <?php
-            foreach ($playerRequest as $player) { 
-                $playerName = $player['name']; ?>
-                <input type="checkbox" name="players[]" id="players" value="<?php echo $player['id'];?>">
-                <?php echo $playerName; ?><br />
-                <?php
+            for($i=1; $i<6; $i++) { 
+                echo "<input type='text' name='players$i' placeholder='Player $i' required><br />";
             }
             ?>
             <br /><input type="submit">
